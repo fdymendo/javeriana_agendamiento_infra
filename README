@@ -20,7 +20,3 @@ terraform plan
 
 11. Ejecutar plan
 terraform apply
-
-12. Tareas manuales:
-Obtener direcciones IP del balanceador de red NLB y agregarlas al sg group asociado al ALB
-Obtener direcciones IP del balanceador de aplicacion ALB y agregarlas al targeta group del NLB
