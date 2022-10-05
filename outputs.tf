@@ -11,3 +11,7 @@ output "public_subnets" {
   description = "List of IDs of public subnets"
   value       = module.vpc.public_subnets
 }
+
+output "cloudfront_dns" {
+  value = aws_cloudfront_distribution.cdn.domain_name
+}
