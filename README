@@ -1,0 +1,26 @@
+1. Ejecutar inicialización 
+terraform init
+
+
+Para agregar mas servicios o contenedores se debe seguir el siguiente orden:
+1. Modificar todas las variables que sean necesarias en variables.tf
+2. Crear un archivo ecs_service# de acuerdo al orden deseado (recomendable copiar uno existente y reemplazar lo que se necesite)
+3. Crear un archivo ecs_task_definition_service# de acuerdo al orden deseado. (copiar y reemplazar)
+4. Validar reglas del security group si aplica, archivo security.tf
+5. En el archivo networking adicionar las reglas para el load balancer.
+6. Crear los target group en el archivo lb_target_groups.tf
+7. Agregar el log group para cada servicio en el archivo: cloudWatch_log_groups.tf
+8. Agregar el recurso para cloudmap en el archivo cloudmap.tf
+9. Agregar virtual service y virtual node para appmesh en el archivo app_mesh.tf
+
+
+
+10. verificar plan de ejecución
+terraform plan
+
+11. Ejecutar plan
+terraform apply
+
+12. Tareas manuales:
+Obtener direcciones IP del balanceador de red NLB y agregarlas al sg group asociado al ALB
+Obtener direcciones IP del balanceador de aplicacion ALB y agregarlas al targeta group del NLB
