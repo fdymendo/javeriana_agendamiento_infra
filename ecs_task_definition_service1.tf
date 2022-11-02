@@ -13,7 +13,24 @@ resource "aws_ecs_task_definition" "task_definition_service1" {
             containerName = "envoy"
           },
         ]
-        environment = []
+        environment = [
+          {
+          name = "MYSQL_IP",
+          value = "carroya-eaesof.cw8wuioquzwa.us-east-1.rds.amazonaws.com"
+        },
+        {
+          name = "MYSQL_PORT",
+          value = "3306"
+        },
+        {
+          name = "MYSQL_USER",
+          value = "carroya"
+        },
+        {
+          name = "MYSQL_PWD",
+          value = "CarroyaRecargado"
+        }
+        ]
         essential   = true
         image       = "${var.account_id}${var.account_arn_ecr}/${var.ecr_repo_service1}:${var.ecr_image_tag_service1}"
         logConfiguration = {
@@ -41,7 +58,7 @@ resource "aws_ecs_task_definition" "task_definition_service1" {
           {
             name  = "APPMESH_VIRTUAL_NODE_NAME"
             value = "mesh/${var.app_mesh_name}/virtualNode/${var.service1}"
-          },
+          }
         ]
         essential = true
         healthCheck = {
@@ -54,7 +71,7 @@ resource "aws_ecs_task_definition" "task_definition_service1" {
           startPeriod = 10
           timeout     = 2
         }
-        image        = "${var.account_id}${var.envoy_image}"
+        image        = "${var.envoy_image}"
         memory       = 500
         mountPoints  = []
         name         = "envoy"
@@ -65,14 +82,14 @@ resource "aws_ecs_task_definition" "task_definition_service1" {
     ]
   )
   cpu                = "512"
-  execution_role_arn = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
+  execution_role_arn = "${var.ecs_role_arn}"
   memory             = "1024"
   network_mode       = "awsvpc"
   requires_compatibilities = [
     "FARGATE",
   ]
 
-  task_role_arn = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
+  task_role_arn = "${var.ecs_role_arn}"
 
   proxy_configuration {
     container_name = "envoy"

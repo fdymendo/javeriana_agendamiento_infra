@@ -14,6 +14,16 @@ resource "aws_security_group_rule" "allow_nlb_alb" {
   security_group_id = aws_security_group.nlb_to_alb_sg.id
 }
 
+resource "aws_security_group_rule" "nlb_to_alb_allow_all_outbound" {
+  description       = "Allow traffic to external networks"
+  type              = "egress"
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  from_port         = 0
+  security_group_id = aws_security_group.nlb_to_alb_sg.id
+}
+
 #Traffic from ALB to ECS Container Tasks
 resource "aws_security_group" "alb_to_ecs_tasks_sg" {
   name        = var.alb_to_ecs_sg_name
@@ -24,8 +34,8 @@ resource "aws_security_group" "alb_to_ecs_tasks_sg" {
 resource "aws_security_group_rule" "alb_to_ecs_ingress_rule" {
   description       = "Allow traffic from my own internal networks"
   type              = "ingress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = 8080
+  to_port           = 8090
   protocol          = "tcp"
   cidr_blocks = module.vpc.private_subnets_cidr_blocks
   security_group_id = aws_security_group.alb_to_ecs_tasks_sg.id

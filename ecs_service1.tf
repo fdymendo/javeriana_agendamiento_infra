@@ -5,9 +5,9 @@ resource "aws_ecs_service" "ecs_service1" {
   cluster                            = aws_ecs_cluster.ecs_cluster.arn
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 100
-  desired_count                      = 0
+  desired_count                      = 1
   enable_execute_command             = false
-  health_check_grace_period_seconds  = 180
+  health_check_grace_period_seconds  = 120
   launch_type                        = "FARGATE"
   name                               = var.service1
   platform_version                   = "LATEST"

@@ -7,6 +7,10 @@ variable "account_arn_ecr" {
   type    = string
 }
 
+variable "ecs_role_arn" {
+  type = string
+}
+
 variable "aws_deploy_region" {
   type    = string
 }

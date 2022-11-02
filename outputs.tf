@@ -12,6 +12,6 @@ output "public_subnets" {
   value       = module.vpc.public_subnets
 }
 
-output "cloudfront_dns" {
-  value = aws_cloudfront_distribution.cdn.domain_name
+output "alb_to_ecs_sg" {
+  value = aws_security_group.alb_to_ecs_tasks_sg.id
 }

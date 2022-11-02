@@ -1,7 +1,8 @@
 ##General
 aws_deploy_region = "us-east-1"
-account_id = "168711566855"
+account_id = "006078069859"
 account_arn_ecr = ".dkr.ecr.us-east-1.amazonaws.com"
+ecs_role_arn = "arn:aws:iam::006078069859:role/ecsTaskExecutionRole"
 
 ##VPC
 vpc_name = "eaesof"
@@ -16,7 +17,7 @@ cloudmap_description = "Proyecto eaesof"
 
 ##App mesh
 app_mesh_name = "eaesof"
-envoy_image = ".dkr.ecr.us-east-1.amazonaws.com/aws-appmesh-envoy:v1.17.3.0"
+envoy_image = "840364872350.dkr.ecr.us-east-1.amazonaws.com/aws-appmesh-envoy:v1.23.1.0-prod"
 
 ##For ECS
 ecs_cluster = "eaesof"
@@ -35,7 +36,7 @@ bucket_name = "agendamientofrontend-eaesof-865373903242"
 
 #Service1
 service1 = "usuarios"
-port_service1 = "80"
+port_service1 = "8080"
 task_definition_service1  = "task-eaesof-usuarios"
 container_image_service1 = "cont-eaesof-usuarios"
 healt_check_service1 = "/usuarios/"
@@ -44,18 +45,18 @@ ecr_image_tag_service1 = "usuarios"
 target_group_service1 = "tg-eaesof-usuarios"
 
 # Service2
-service2 = "licencias"
-port_service2 = "80"
-task_definition_service2 = "task-eaesof-licencias"
-container_image_service2 = "cont-eaesof-licencias"
-healt_check_service2 = "/licencias/"
-ecr_repo_service2 = "licencias-eaesof"
-ecr_image_tag_service2 = "licencias"
-target_group_service2 = "tg-eaesof-licencias"
+service2 = "infracciones"
+port_service2 = "8081"
+task_definition_service2 = "task-eaesof-infracciones"
+container_image_service2 = "cont-eaesof-infracciones"
+healt_check_service2 = "/infraccion/"
+ecr_repo_service2 = "infracciones-eaesof"
+ecr_image_tag_service2 = "infracciones"
+target_group_service2 = "tg-eaesof-infracciones"
 
 #Service 3
 service3 = "agendamiento"
-port_service3 = "80"
+port_service3 = "8082"
 task_definition_service3 = "task-eaesof-agendamiento"
 container_image_service3 = "cont-eaesof-agendamiento"
 healt_check_service3  = "/agendamiento/"
