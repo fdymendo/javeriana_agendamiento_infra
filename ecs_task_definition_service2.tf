@@ -29,7 +29,15 @@ resource "aws_ecs_task_definition" "task_definition_service2" {
         {
           name = "MYSQL_PWD",
           value = "CarroyaRecargado"
-        }
+        },
+        {
+            name = "SER_USER_IP",
+            value = "http://usuarios.eaesof.prod.local"
+          },
+          {
+            name = "SER_USER_PORT",
+            value = "8080"
+          }
         ]
         essential   = true
         image       = "${var.account_id}${var.account_arn_ecr}/${var.ecr_repo_service2}:${var.ecr_image_tag_service2}"
