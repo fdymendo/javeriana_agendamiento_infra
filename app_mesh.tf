@@ -42,6 +42,11 @@ resource "aws_appmesh_virtual_service" "vs_service1" {
   mesh_name  = aws_appmesh_mesh.app_mesh.id
 
   spec {
+    backend {
+      virtual_service {
+        virtual_service_name = aws_service_discovery_service.cm_service1.name
+      }
+    }
     provider {
       virtual_node {
         virtual_node_name = var.service1
